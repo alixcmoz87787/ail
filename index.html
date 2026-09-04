@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ایران متصل | مگاپنل جامع مدیریت سایبرپانک و هسته کوانتومی</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root[data-theme="dark"] {
+            --bg-main: #020208;
+            --bg-card: rgba(12, 12, 26, 0.9);
+            --text-main: #f8fafc;
+            --text-muted: #64748b;
+            --accent: #00ffcc;
+            --accent-secondary: #0088ff;
+            --accent-glow: rgba(0, 255, 204, 0.2);
+            --border-col: rgba(0, 255, 204, 0.25);
+            --sub-bg: rgba(0, 0, 0, 0.85);
+            --header-bg: linear-gradient(135deg, #050514, #0f0f2b);
+            --table-hover: rgba(0, 255, 204, 0.06);
+        }
+
+        :root[data-theme="light"] {
+            --bg-main: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --accent: #0284c7;
+            --accent-secondary: #2563eb;
+            --accent-glow: rgba(2, 132, 199, 0.2);
+            --border-col: rgba(2, 132, 199, 0.3);
+            --sub-bg: rgba(241, 245, 249, 0.9);
+            --header-bg: linear-gradient(135deg, #ffffff, #e2e8f0);
+            --table-hover: rgba(2, 132, 199, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Vazirmatn', sans-serif;
+            min-height: 100vh;
+            padding: 25px;
+        }
+
+        .cyber-wrapper {
+            max-width: 1450px;
+            margin: 0 auto;
+        }
+
+        /* هدر اصلی */
+        .cyber-header {
+            background: var(--header-bg);
+            border: 1px solid var(--border-col);
+            border-radius: 26px;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 20px 45px var(--accent-glow);
+            margin-bottom: 35px;
+            backdrop-filter: blur(25px);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cyber-brand h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .cyber-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .port-badge {
+            background: var(--accent-glow);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-family: monospace;
+            border: 1px solid var(--border-col);
+        }
+
+        .cyber-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-col);
+            color: var(--text-main);
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 5px 20px var(--accent-glow);
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, #0088cc, #003366);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 25px rgba(0, 136, 204, 0.4);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* ساختار گرید پنل */
+        .cyber-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .cyber-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-col);
+            border-radius: 26px;
+            padding: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(25px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 6px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent), var(--accent-secondary));
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* ساب‌لینک */
+        .sublink-box {
+            background: var(--sub-bg);
+            border: 2px solid var(--accent);
+            border-radius: 18px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: inset 0 0 30px rgba(0, 255, 204, 0.06);
+        }
+
+        .sublink-payload {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--accent);
+            font-size: 1.05rem;
+            word-break: break-all;
+            line-height: 1.8;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            direction: ltr;
+            text-align: left;
+            border-left: 5px solid var(--accent);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-cyber {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #020208;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 25px var(--accent-glow);
+        }
+
+        .btn-primary-cyber:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .btn-outline-cyber {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-col);
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-outline-cyber:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* بخش مدیریت توکن تلگرام */
+        .telegram-token-box {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cyber-input {
+            flex: 1;
+            min-width: 280px;
+            background: var(--sub-bg);
+            border: 1px solid var(--border-col);
+            color: var(--text-main);
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .cyber-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* جدول کانفیگ‌ها */
+        .cyber-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .cyber-table th, .cyber-table td {
+            padding: 18px;
+            border-bottom: 1px solid var(--border-col);
+            font-size: 0.95rem;
+        }
+
+        .cyber-table th {
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .cyber-table tr:hover {
+            background-color: var(--table-hover);
+        }
+
+        .btn-delete-cyber {
+            background: rgba(255, 51, 102, 0.1);
+            color: #ff3366;
+            border: 1px solid rgba(255, 51, 102, 0.3);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-delete-cyber:hover {
+            background: rgba(255, 51, 102, 0.2);
+        }
+
+        /* فوتر */
+        .cyber-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-col);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logout-btn {
+            color: #ff3366;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 51, 102, 0.08);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 51, 102, 0.2);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 51, 102, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="cyber-wrapper">
+        <!-- هدر -->
+        <header class="cyber-header">
+            <div class="cyber-brand">
+                <h1><i class="fa-solid fa-atom"></i> ایران متصل | IRAN MOTTASEL</h1>
+                <div class="cyber-meta">
+                    <span>هسته پردازشی: <strong style="color: var(--accent);">● فعال و امن</strong></span>
+                    <span>پورت ثابت: <span class="port-badge">{{ port }}</span></span>
+                    <span>نسخه سیستم: <strong>v10.4 Enterprise</strong></span>
+                </div>
+            </div>
+            <div class="cyber-actions">
+                <button class="theme-toggle-btn" onclick="toggleCyberTheme()" title="تغییر تم تاریک/روشن">
+                    <i id="cyberThemeIcon" class="fa-solid fa-moon"></i>
+                </button>
+                <a href="https://t.me/Super_Jinx" target="_blank" class="telegram-btn">
+                    <i class="fab fa-telegram-plane"></i> کانال تلگرام
+                </a>
+            </div>
+        </header>
+
+        <!-- بخش محتوای اصلی -->
+        <div class="cyber-grid">
+            <!-- ساب‌لینک پیشرفته -->
+            <div class="cyber-card">
+                <div class="card-title">
+                    <i class="fa-solid fa-network-wired"></i> هاب توزیع خودکار و ساب‌لینک هوشمند
+                </div>
+                <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
+                    این لینک تمامی گره‌های فعال را به صورت لحظه‌ای روی پورت ثابت <code style="color: var(--accent);">{{ port }}</code> همگام‌سازی می‌کند.
+                </p>
+
+                <div class="sublink-box">
+                    <div class="sublink-payload" id="sublinkTextOutput">
+                        https://iran-mottasel.railway.app:{{ port }}/sub/quantum-secure-payload-token-99f82a1
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn-primary-cyber" onclick="copyCyberSublink()">
+                        <i class="fa-solid fa-copy"></i> کپی کردن ساب‌لینک
+                    </button>
+                    <button class="btn-outline-cyber" onclick="createNewConfigNode()">
+                        <i class="fa-solid fa-plus"></i> ایجاد کانفیگ جدید روی پورت ثابت
+                    </button>
+                </div>
+            </div>
+
+            <!-- تنظیمات ربات تلگرام -->
+            <div class="cyber-card">
+                <div class="card-title">
+                    <i class="fa-solid fa-robot"></i> مدیریت توکن ربات تلگرام (Telegram Bot Token)
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;">
+                    توکن ربات تلگرام خود را برای ارسال هشدارهای ترافیک و مدیریت اتوماتیک کاربران وارد کنید:
+                </p>
+                <div class="telegram-token-box">
+                    <input type="text" id="botTokenInput" class="cyber-input" value="{{ state.telegram_token }}">
+                    <button class="btn-primary-cyber" onclick="saveTelegramToken()">
+                        <i class="fa-solid fa-floppy-disk"></i> ذخیره توکن ربات
+                    </button>
+                </div>
+            </div>
+
+            <!-- جدول مدیریت کانفیگ‌ها -->
+            <div class="cyber-card">
+                <div class="card-title">
+                    <i class="fa-solid fa-server"></i> جدول کنترل و مدیریت گره‌ها و کانفیگ‌های فعال
+                </div>
+                <table class="cyber-table">
+                    <thead>
+                        <tr>
+                            <th>نام کانفیگ</th>
+                            <th>پروتکل</th>
+                            <th>پورت ثابت</th>
+                            <th>وضعیت هسته</th>
+                            <th>ترافیک مصرفی</th>
+                            <th>عملیات مدیریتی</th>
+                        </tr>
+                    </thead>
+                    <tbody id="configsTableBody">
+                        {% for conf in configs %}
+                        <tr id="row-{{ conf.id }}">
+                            <td><strong>{{ conf.name }}</strong></td>
+                            <td>{{ conf.protocol }}</td>
+                            <td><span class="port-badge">{{ conf.port }}</span></td>
+                            <td><span style="color: var(--accent);">● {{ conf.status }}</span></td>
+                            <td>{{ conf.traffic }}</td>
+                            <td>
+                                <button class="btn-delete-cyber" onclick="deleteConfigNode({{ conf.id }})">
+                                    <i class="fa-solid fa-trash"></i> حذف گره
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- فوتر -->
+        <footer class="cyber-footer">
+            <span>سامانه جامع مدیریت و توزیع پروکسی «ایران متصل» - پایداری ۱۰۰٪ روی پورت 2053</span>
+            <a href="/logout" class="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i> خروج امن از پنل
+            </a>
+        </footer>
+    </div>
+
+    <script>
+        function toggleCyberTheme() {
+            const root = document.documentElement;
+            const icon = document.getElementById('cyberThemeIcon');
+            if (root.getAttribute('data-theme') === 'dark') {
+                root.setAttribute('data-theme', 'light');
+                icon.className = 'fa-solid fa-sun';
+            } else {
+                root.setAttribute('data-theme', 'dark');
+                icon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        function copyCyberSublink() {
+            const text = document.getElementById('sublinkTextOutput').innerText.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✨ ساب‌لینک کوانتومی با موفقیت کپی شد!');
+            });
+        }
+
+        async function createNewConfigNode() {
+            const name = prompt('لطفا نام کانفیگ جدید را وارد کنید:', 'Iran-Mottasel-Pro-Node');
+            if (!name) return;
+
+            const res = await fetch('/api/configs/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, protocol: 'VLESS' })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                alert(data.message);
+                location.reload();
+            } else {
+                alert('خطا در ایجاد کانفیگ.');
+            }
+        }
+
+        async function deleteConfigNode(id) {
+            if (!confirm('آیا از حذف این کانفیگ مطمئن هستید؟')) return;
+
+            const res = await fetch(`/api/configs/delete/${id}`, { method: 'DELETE' });
+            const data = await res.json();
+            if (data.status === 'success') {
+                document.getElementById(`row-${id}`).remove();
+                alert(data.message);
+            } else {
+                alert('خطا در حذف کانفیگ.');
+            }
+        }
+
+        async function saveTelegramToken() {
+            const token = document.getElementById('botTokenInput').value.trim();
+            if (!token) {
+                alert('توکن نمی‌تواند خالی باشد.');
+                return;
+            }
+
+            const res = await fetch('/api/telegram/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: token })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                alert(data.message);
+            } else {
+                alert('خطا در ذخیره‌سازی توکن ربات.');
+            }
+        }
+    </script>
+</body>
+</html>
